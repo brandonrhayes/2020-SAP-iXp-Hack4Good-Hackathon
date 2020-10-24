@@ -4,7 +4,7 @@ var router = express.Router();
 const vision = require('@google-cloud/vision');
 const client = new vision.ImageAnnotatorClient();
 
-const fileName = './angry-man.jpg';
+const fileName = './test-images/angry-man.jpg';
 
 router.get('/', async function(req, res, next) {
   const [result] = await client.faceDetection(fileName);
