@@ -1,8 +1,8 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { AppBar, Toolbar, Typography, Button, IconButton, Menu, MenuItem } from "@material-ui/core";
+import { AppBar, Toolbar, Typography, Button, IconButton } from "@material-ui/core";
 import { AccountCircle } from '@material-ui/icons';
-import { BrowserRouter as Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -11,13 +11,14 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  link: {
+    textDecoration: 'none',
+    color: 'white',
+  }
 }));
 
 const Header = () => {
   const classes = useStyles();
-  const [auth, setAuth] = React.useState(true);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
 
   return (
     <div className={classes.root}>
@@ -26,17 +27,19 @@ const Header = () => {
           <Typography variant="h6" className={classes.title}>
             Mindr
           </Typography>
-          <Link to={"/home"}>
+          <Link to={'/'} className={classes.link}>
             <Button color="inherit">Home</Button>
           </Link>
-          <Link to={"/home"}>
+          <Link to={'/log'} className={classes.link}>
             <Button color="inherit">Log</Button>
           </Link>
-          <IconButton
-            color="inherit"
-          >
-            <AccountCircle />
-          </IconButton>
+          <Link to={'/account'} className={classes.link}>
+            <IconButton
+              color="inherit"
+            >
+              <AccountCircle />
+            </IconButton>
+          </Link>
         </Toolbar>
       </AppBar>
     </div>
