@@ -1,0 +1,114 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "mood from home",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "name": "numericFeeling",
+          "slots": [
+            {
+              "name": "number",
+              "type": "AMAZON.NUMBER"
+            }
+          ],
+          "samples": [
+            "{number} of five",
+            "{number}",
+            "I am a {number}",
+            "I feel like {number} out of five today"
+          ]
+        },
+        {
+          "name": "descriptiveFeeling",
+          "slots": [
+            {
+              "name": "feeling",
+              "type": "FEELING"
+            }
+          ],
+          "samples": [
+            "{feeling}",
+            "i\u0027m {feeling}",
+            "I am {feeling}",
+            "I feel {feeling} today"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "values": [
+            {
+              "name": {
+                "value": "Frustrated",
+                "synonyms": [
+                  "Agrivated",
+                  "Annoyed"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Depressed",
+                "synonyms": [
+                  "Down"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Angry",
+                "synonyms": [
+                  "Mad"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Happy",
+                "synonyms": [
+                  "Smiling",
+                  "Excited"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Sad",
+                "synonyms": [
+                  "Blue"
+                ]
+              }
+            }
+          ],
+          "name": "FEELING"
+        }
+      ],
+      "modelConfiguration": {
+        "fallbackIntentSensitivity": {
+          "level": "LOW"
+        }
+      }
+    }
+  },
+  "version": "3"
+}
