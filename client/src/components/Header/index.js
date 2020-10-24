@@ -47,7 +47,7 @@ const Header = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            Mood from Home
+            Mood From Home
           </Typography>
           <Link to={"/"} className={classes.link}>
             <Button color="inherit">Home</Button>

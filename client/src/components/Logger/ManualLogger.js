@@ -53,9 +53,10 @@ const ManualLogger = (props) => {
     props.close();
   }
 
-  const handleSave = async () => {
+  const handleSave = () => {
     // TODO: need to be able to send to different users, don't have time to implement
-    api.post('/users/score/5f94996c6b492e9d904d4ccc', {params: {
+    api.post('/users/score/5f94996c6b492e9d904d4ccc', 
+    {params: {
       score: sliderValue,
     }})
       .then((res) => {
