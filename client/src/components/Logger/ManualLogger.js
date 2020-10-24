@@ -1,5 +1,7 @@
 import React from "react";
 import { Typography, Button, DialogTitle, DialogActions, DialogContent, Slider } from "@material-ui/core";
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -9,6 +11,12 @@ const useStyles = makeStyles((theme) => ({
   },
   heading2: {
     marginBottom: "20px",
+  },
+  closeButton: {
+    position: 'absolute',
+    right: theme.spacing(1),
+    top: theme.spacing(1),
+    color: theme.palette.grey[500],
   },
 }));
 
@@ -35,6 +43,7 @@ const marks = [
   }, 
 ]
 
+
 const ManualLogger = (props) => {
   const classes = useStyles();
 
@@ -42,10 +51,19 @@ const ManualLogger = (props) => {
     props.close();
   }
 
+  const handleSave = () => {
+    // save to database
+    props.close();
+    
+  }
+
   return (
     <>
       <DialogTitle>
-        Log your mood manually
+        <Typography variant='h6'>Log your mood manually</Typography>
+          <IconButton className={classes.closeButton} onClick={handleClose}>
+            <CloseIcon />
+          </IconButton>
       </DialogTitle>
       <DialogContent dividers>
         <Typography gutterBottom>
@@ -64,7 +82,7 @@ const ManualLogger = (props) => {
         />
       </DialogContent>
       <DialogActions>
-        <Button autoFocus onClick={handleClose} color="primary">
+        <Button autoFocus onClick={handleSave} color="primary">
           Save changes
         </Button>
       </DialogActions>
