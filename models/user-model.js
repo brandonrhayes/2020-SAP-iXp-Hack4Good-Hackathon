@@ -6,11 +6,11 @@ const User = new Schema(
         email: {
             type: String, 
             unique: true,
-            required: true
+            required: false
         },
         name: {
             type: String,
-            required: true
+            required: false
         },
         moodScore: [
             {

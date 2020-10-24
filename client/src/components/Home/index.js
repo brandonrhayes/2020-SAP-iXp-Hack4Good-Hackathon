@@ -30,7 +30,7 @@ const Home = () => {
       <Box align="center">
         <HeroUnit data={pageData} />
         <div className="Home-image">
-          <img src={home_img} alt="home image" width="50%" height="50%" />
+          <img src={home_img} alt="home image" maxWidth="565px" maxHeight="423px" />
         </div>
       </Box>
     </div>

@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const User = require('../models/user-model');
 
 const db = require('./db')
 const dbCtrl = require('./dbCtrl');
@@ -11,6 +12,8 @@ router.get('/', function(req, res, next) {
 });
 router.get('/:id', dbCtrl.getUserData)
 router.get('/score/:id', dbCtrl.getScore)
-router.put('/score/:id', dbCtrl.addScore)
+// router.put('/score/:id', dbCtrl.addScore)
+
+router.post('/score/:id', dbCtrl.addScore);
 
 module.exports = router;
