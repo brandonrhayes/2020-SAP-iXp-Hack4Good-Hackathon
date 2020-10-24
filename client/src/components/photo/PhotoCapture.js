@@ -4,6 +4,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from "@material-ui/core/styles";
 import Webcam from "react-webcam";
+import axios from 'axios'
 
 const videoConstraints = {
   width: { min: 480 },
@@ -37,8 +38,33 @@ const PhotoCapture = (props) => {
 
   const capture = React.useCallback(() => {
     const imageSrc = webcamRef.current.getScreenshot();
-    // send image to backend
-    console.log(imageSrc);
+    const img64base = imageSrc.replace("data:image/jpeg;base64,", "");
+    console.log(img64base);
+
+    let body = {
+      "requests":[
+        {
+          "image":{
+            "content":img64base
+          },
+          "features":[
+            {
+              "type":"FACE_DETECTION",
+              "maxResults":1
+            }
+          ]
+        }
+      ]
+    }
+    axios({
+      method: "POST",
+      url: "https://vision.googleapis.com/v1/images:annotate",
+      data: body
+    }).then((response) => {
+      console.log("google api response", response);
+    }).catch((err) => {
+      console.log("error: ", err.message)
+    });
   }, [webcamRef]);
 
   return (
