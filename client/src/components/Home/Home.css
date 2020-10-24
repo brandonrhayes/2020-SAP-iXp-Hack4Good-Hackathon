@@ -1,0 +1,7 @@
+.Home-main {
+  display: flex;
+}
+
+.Home-image {
+  justify-content: center;
+}

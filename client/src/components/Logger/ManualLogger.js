@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography, Button, Box } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
   heading: {
@@ -10,26 +10,22 @@ const useStyles = makeStyles(theme => ({
   heading2: {
     marginBottom: '20px',
   },
-  link: {
-    textDecoration: "none",
-  },
 }))
 
 
-const Reminder = () => {
+const ManualLogger = () => {
   const classes = useStyles();
 
   return (
     <Box align='center'>
-      <Typography variant='h2' className={classes.heading}>
-        Reminders
-      </Typography>
       <Typography variant='h4' className={classes.heading2}>
-        Manage your current reminders
+        How would you rate your mood right now? (1=bad, 5=good)
       </Typography>
-      <div> connnect to alexa </div>
+      <div>
+        NEED TO IMPLEMENT SCALE HERE
+      </div>
     </Box>
   );
 }
 
-export default Reminder;
+export default ManualLogger;

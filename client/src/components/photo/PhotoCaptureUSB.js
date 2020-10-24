@@ -1,7 +1,7 @@
 // credit to https://codesandbox.io/s/74pzm9lkq6
 import React from "react";
 
-export class PhotoCaptureUSB extends React.Component {
+export default class PhotoCaptureUSB extends React.Component {
   processDevices(devices) {
     devices.forEach((device) => {
       // console.log(device.label);
@@ -44,6 +44,9 @@ export class PhotoCaptureUSB extends React.Component {
         <button onClick={this.takePhoto}>Take photo!</button>
         <div className="c-camera-feed__stage">
           <canvas width="680" height="360" ref={(ref) => (this.canvas = ref)} />
+        </div>
+        <div>
+          !!!need to send picture to backend via axios!!!
         </div>
       </div>
     );
