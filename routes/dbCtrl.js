@@ -1,36 +1,9 @@
+const { UnsupportedMediaType } = require('http-errors')
+const { Body } = require('node-fetch')
 const User = require('../models/user-model')
 
-createUser = (req, res) => {
-    const body = JSON.stringify(req.params.user)
-
-    if (!body) {
-      return res.status(400).json({
-          success: false,
-          error: 'No user id provided',
-      })
-    }
-  
-    const user = new User({username: body});
-  
-    user
-    .save()
-    .then(() => {
-        return res.status(201).json({
-            success: true,
-            id: user._id,
-            message: 'User created!',
-        })
-    })
-    .catch(error => {
-        return res.status(400).json({
-            error,
-            message: 'User not created!',
-        })
-    })
-}
-
-getUser = async (req, res) => {
-    await User.findOne({username: JSON.stringify(req.params.username)}, (err, user) => {
+getUserData = async (req, res) => {
+    await User.findOne({_id: req.params.id}, (err, user) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
@@ -46,9 +19,8 @@ getUser = async (req, res) => {
     }).catch(err => console.log(err))
 }
 
-getMoodScore = async (req, res) => {
-    const username = req.body.user;
-    await User.findOne({username: JSON.stringify(username)}, (err, user) => {
+getScore = async (req, res) => {
+    await User.findOne({_id: req.params.id}, (err, user) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
@@ -60,14 +32,27 @@ getMoodScore = async (req, res) => {
         }
         return res.status(200).json({
             success: true, 
-            data: user.getMoodScore})
+            data: user.moodScore})
     }).catch(err => console.log(err))
 }
 
-addMoodScore = async (req, res) => {
-    const username = JSON.stringify(req.body.user);
-    const score = req.body.score;
-    await User.findOne({username: JSON.stringify(username)}, (err, user) => {
+
+
+addScore = async (req, res) => {
+    const scoreSet = {score: req.body.score, date: Date.now()}
+    // User.findOneAndUpdate(
+    //     {_id: req.body.id},
+    //     {$push: [{moodScore: scoreSet}]},
+    //     function (error, success) {
+    //         if (error) {
+    //             return res.status(404).json({success: false, error: error})
+    //         } else {
+    //             return res.status(200).json({success: true})
+    //         }
+    //     });
+
+
+    User.findOne({_id: req.params.id}, (err, user) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
@@ -77,15 +62,26 @@ addMoodScore = async (req, res) => {
                 .status(404)
                 .json({ success: false, error: `User not found` })
         }
-        user.addMoodScore({})
-        return res.status(200).json({
-            success: true, 
-            data: user.getMoodScore})
+
+        var updatedScores = user.moodScore.push(scoreSet)
+        // user.email = user.email
+        user.score = updatedScores
+        console.log(user)
+
+        user.save().then(() => {
+            res.status(200).json({
+                success: true,
+                scores: user.moodScore
+            })
+        }).catch(error => {
+            res.status(404);
+        })
     }).catch(err => console.log(err))
 }
 
 module.exports = {
-    createUser,
-    getUser,
-    getMoodScore
+    // createUser,
+    getUserData,
+    getScore,
+    addScore
 }

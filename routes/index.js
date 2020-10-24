@@ -16,7 +16,6 @@ router.get('/', function(req, res, next) {
 // TODO: fix dbcontroller functions
 // router.put('/user/:user', dbCtrl.createUser);
 // router.get('/user/:username', dbCtrl.getUser);
-// router.get('/moodscore', dbCtrl.getMoodScore)
 router.post('/facebooklogin', auth.facebookLogin);
 
 module.exports = router;
