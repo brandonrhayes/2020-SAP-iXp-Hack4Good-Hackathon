@@ -11,6 +11,8 @@ router.get('/', function(req, res, next) {
 });
 router.get('/:id', dbCtrl.getUserData)
 router.get('/score/:id', dbCtrl.getScore)
-router.put('/score/:id', dbCtrl.addScore)
+// router.put('/score/:id', dbCtrl.addScore)
+
+router.post('/score/:id', dbCtrl.addScore);
 
 module.exports = router;
