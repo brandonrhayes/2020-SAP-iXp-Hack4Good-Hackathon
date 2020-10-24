@@ -11,6 +11,14 @@ import { AccountCircle } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import FacebookLogin from "react-facebook-login";
 import axios from "axios";
+import MoodFromHome512 from "./MoodFromHome_180.png";
+import { Icon } from "@material-ui/core";
+
+export const Logo = () => (
+  <Icon>
+      <img src={MoodFromHome512} height={22} width={22}/>
+  </Icon>
+)
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,24 +36,31 @@ const useStyles = makeStyles((theme) => ({
 const Header = () => {
   const classes = useStyles();
 
-  // const responseFacebook = (response) => {
-  //   console.log(response);
-  //   axios({
-  //     method: "POST",
-  //     url: "http://localhost:9000/facebooklogin",
-  //     data: {
-  //       name: response.name,
-  //       email: response.email,
-  //     },
-  //   }).then((response) => {
-  //     console.log("Facebook login success", response);
-  //   });
-  // };
+  const responseFacebook = (response) => {
+    console.log(response);
+    axios({
+      method: "POST",
+      url: "http://localhost:9000/facebooklogin",
+      data: {
+        name: response.name,
+        email: response.email,
+      },
+    }).then((response) => {
+      console.log("Facebook login success", response);
+    });
+  };
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
+        <IconButton color="inherit">
+              <Logo />
+            </IconButton>
+          {/* <IconButton 
+            edge="start" className={classes.menuButton} color="inherit" aria-label="MoodFromHome">
+             <MoodFromHome512 />
+          </IconButton> */}
           <Typography variant="h6" className={classes.title}>
             Mood From Home
           </Typography>
@@ -63,14 +78,14 @@ const Header = () => {
               <AccountCircle />
             </IconButton>
           </Link>
-          {/* <FacebookLogin
+          {<FacebookLogin
             appId="661278961420678"
             autoLoad={true}
             fields="name,email,picture"
             callback={responseFacebook}
             cssClass="my-facebook-button-class"
             icon="fa-facebook"
-          /> */}
+          /> }
         </Toolbar>
       </AppBar>
     </div>
