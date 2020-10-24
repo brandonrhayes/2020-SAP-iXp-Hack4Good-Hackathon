@@ -1,9 +1,12 @@
 import React from 'react';
+import { Typography } from '@material-ui/core';
 
 const Home = () => {
   return (
     <div>
-      <h1>Home</h1>
+      <Typography variant='h4' align='center'>
+        Welcome to Mindr - your smart work from home assistant.
+      </Typography>
     </div>
   );
 }

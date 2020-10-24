@@ -1,9 +1,12 @@
 import React from 'react';
+import { Typography } from '@material-ui/core';
 
 const Account = () => {
   return (
     <div>
-      <h1>Account</h1>
+      <Typography variant='h2' align='center'>
+        Account
+      </Typography>
     </div>
   )
 }
