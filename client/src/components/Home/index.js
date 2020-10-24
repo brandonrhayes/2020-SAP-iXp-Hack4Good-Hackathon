@@ -18,8 +18,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const pageData = {
-  heading: "Mood From Home",
-  subheading: "Your smart work-from-home assistant",
+  heading: "Mood from Home",
+  subheading: "Your intelligent assistant for everything work-from-home",
 };
 
 const Home = () => {
@@ -30,7 +30,7 @@ const Home = () => {
       <Box align="center">
         <HeroUnit data={pageData} />
         <div className="Home-image">
-          <img src={home_img} alt="home image" maxWidth="565px" maxHeight="423px" />
+          <img src={home_img} alt="home image" maxWidth="500px" maxHeight="320px" />
         </div>
       </Box>
     </div>
