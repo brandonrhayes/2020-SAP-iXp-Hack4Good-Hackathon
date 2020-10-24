@@ -4,21 +4,21 @@ var router = express.Router();
 const vision = require('@google-cloud/vision');
 const client = new vision.ImageAnnotatorClient();
 
-/**
- * TODO(developer): Uncomment the following line before running the sample.
- */
-const fileName = 'smile.jpg';
+const fileName = './angry-man.jpg';
 
-
-router.get('/', function(req, res, next) {
-  const result = callVision();
-  res.send(result);
-});
-
-async function callVision() {
+router.get('/', async function(req, res, next) {
   const [result] = await client.faceDetection(fileName);
   const faces = result.faceAnnotations;
-  return faces;
-}
+  const return_res = {
+    "message": "GET /vision SUCCESS",
+    "result": {
+      "Joy": faces[0].joyLikelihood,
+      "Anger": faces[0].angerLikelihood,
+      "Sorrow": faces[0].sorrowLikelihood,
+      "Surprise": faces[0].surpriseLikelihood,
+    }
+  }
+  res.send(return_res);
+});
 
 module.exports = router;
