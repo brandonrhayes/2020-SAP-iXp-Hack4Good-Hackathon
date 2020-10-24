@@ -1,6 +1,7 @@
 import React from 'react';
 import { Typography, Button, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import HeroUnit from '../HeroUnit';
 
 const useStyles = makeStyles(theme => ({
   heading: {
@@ -15,20 +16,22 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+const pageData = {
+  heading: 'Reminders',
+  subheading: 'Your reminders for a healthy work-from-home environment'
+};
+
 
 const Reminder = () => {
   const classes = useStyles();
 
   return (
-    <Box align='center'>
-      <Typography variant='h2' className={classes.heading}>
-        Reminders
-      </Typography>
-      <Typography variant='h4' className={classes.heading2}>
-        Manage your current reminders
-      </Typography>
-      <div> connnect to alexa </div>
-    </Box>
+    <>
+      <HeroUnit data={pageData} />
+      <Box align='center'>
+        <div> connnect to alexa </div>
+      </Box>
+    </>
   );
 }
 

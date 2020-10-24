@@ -1,7 +1,9 @@
 import React from 'react';
-import { Typography, Button, Box } from '@material-ui/core';
+import { Typography, Button, Box, Grid, Dialog } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom";
+import HeroUnit from '../HeroUnit';
+import ManualLogger from './ManualLogger';
 
 const useStyles = makeStyles(theme => ({
   heading: {
@@ -16,25 +18,46 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+const pageData = {
+  heading: 'Mood Log',
+  subheading: 'How would you like to log your mood?'
+};
+
+
 
 const Logger = () => {
   const classes = useStyles();
+  const [manualOpen, setManualOpen] = React.useState(false);
+
+  const handleClickOpenManual = () => {
+    setManualOpen(true);
+  }
+
+  const handleCloseManual = () => {
+    setManualOpen(false);
+  }
 
   return (
-    <Box align='center'>
-      <Typography variant='h2' className={classes.heading}>
-        Your mood
-      </Typography>
-      <Typography variant='h4' className={classes.heading2}>
-        How would you like to log your mood?
-      </Typography>
-      <Link to={"/photo-log"} className={classes.link}>
-        <Button>Take a picture of myself</Button>
-      </Link>
-      <Link to={"/manual-log"} className={classes.link}>
-        <Button>Manually enter a score</Button>
-      </Link>
-    </Box>
+    <>
+      <HeroUnit data={pageData} />
+      <Box align='center'>
+        <Grid container spacing={2} justify="center">
+          <Grid item>
+            <Link to={"/photo-log"} className={classes.link}>
+              <Button variant='contained'>Take a picture of myself</Button>
+            </Link>
+          </Grid>
+          <Grid item>
+            {/* <Link to={"/manual-log"} className={classes.link} onClick={handleClickOpenManual}> */}
+              <Button variant='contained' onClick={handleClickOpenManual}>Manually enter a score</Button>
+            {/* </Link> */}
+          </Grid>
+        </Grid>
+      </Box>
+      <Dialog onClose={handleCloseManual} open={manualOpen}>
+        <ManualLogger close={handleCloseManual} />
+      </Dialog>
+    </>
   );
 }
 
