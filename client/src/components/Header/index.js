@@ -28,19 +28,19 @@ const useStyles = makeStyles((theme) => ({
 const Header = () => {
   const classes = useStyles();
 
-  const responseFacebook = (response) => {
-    console.log(response);
-    axios({
-      method: "POST",
-      url: "http://localhost:9000/facebooklogin",
-      data: {
-        name: response.name,
-        email: response.email,
-      },
-    }).then((response) => {
-      console.log("Facebook login success", response);
-    });
-  };
+  // const responseFacebook = (response) => {
+  //   console.log(response);
+  //   axios({
+  //     method: "POST",
+  //     url: "http://localhost:9000/facebooklogin",
+  //     data: {
+  //       name: response.name,
+  //       email: response.email,
+  //     },
+  //   }).then((response) => {
+  //     console.log("Facebook login success", response);
+  //   });
+  // };
 
   return (
     <div className={classes.root}>
@@ -63,14 +63,14 @@ const Header = () => {
               <AccountCircle />
             </IconButton>
           </Link>
-          <FacebookLogin
+          {/* <FacebookLogin
             appId="661278961420678"
             autoLoad={true}
             fields="name,email,picture"
             callback={responseFacebook}
             cssClass="my-facebook-button-class"
             icon="fa-facebook"
-          />
+          /> */}
         </Toolbar>
       </AppBar>
     </div>

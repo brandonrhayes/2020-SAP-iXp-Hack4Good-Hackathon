@@ -86,7 +86,7 @@ getScore = async (req, res) => {
 addScore = async (req, res) => {
     const id = req.params.id;
     const user = await User.findOne({ _id: id });
-    const scoreSet = {score: req.body.score, date: Date.now()};
+    const scoreSet = {score: req.body.params.score, date: Date.now()};
     var moodScoreArray = user.moodScore;
     moodScoreArray.push(scoreSet);
   

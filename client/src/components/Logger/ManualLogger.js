@@ -3,6 +3,7 @@ import { Typography, Button, DialogTitle, DialogActions, DialogContent, Slider }
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from "@material-ui/core/styles";
+import api from '../../axios';
 
 const useStyles = makeStyles((theme) => ({
   heading: {
@@ -46,15 +47,24 @@ const marks = [
 
 const ManualLogger = (props) => {
   const classes = useStyles();
+  const [sliderValue, setSliderValue] = React.useState(3);
 
   const handleClose = () => {
     props.close();
   }
 
-  const handleSave = () => {
-    // save to database
+  const handleSave = async () => {
+    // TODO: need to be able to send to different users, don't have time to implement
+    api.post('/users/score/5f94996c6b492e9d904d4ccc', {params: {
+      score: sliderValue,
+    }})
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
     props.close();
-    
   }
 
   return (
@@ -79,6 +89,7 @@ const ManualLogger = (props) => {
           marks={marks}
           min={1}
           max={5}
+          onChange={(e, val) => setSliderValue(val)}
         />
       </DialogContent>
       <DialogActions>
