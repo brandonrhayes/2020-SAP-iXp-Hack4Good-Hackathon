@@ -1,7 +1,17 @@
+import React from 'react';
 import './App.css';
+<<<<<<< HEAD
 import FacebookLogin from 'react-facebook-login';
 import axios from 'axios';
 
+=======
+import Header from './Header';
+import Home from './Home';
+import Account from './Account';
+import Logger from './Logger';
+// import { PhotoCaptureUSB } from './photo/PhotoCaptureUSB';
+import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+>>>>>>> mandy
 
 function App() {
   // return (
@@ -27,6 +37,7 @@ function App() {
   }
 
   return (
+<<<<<<< HEAD
     <div className = "facebook login">
       <h1>Login with Facebook</h1>
       <FacebookLogin
@@ -39,6 +50,22 @@ function App() {
       />,
     </div>
   )
+=======
+    <Router>
+      <div>
+        <Header />
+      </div>
+      <div className='App-main'>
+        <Switch>
+          <Route path='/' key='/' component={Home} exact />
+          <Route path='/home' key='/home' component={Home} />
+          <Route path='/account' key='/account' component={Account} />
+          <Route path='/log' key='/log' component={Logger} />
+        </Switch>
+      </div>
+    </Router>
+  );
+>>>>>>> mandy
 }
 
 export default App;
