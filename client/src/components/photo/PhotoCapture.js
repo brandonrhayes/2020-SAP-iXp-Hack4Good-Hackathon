@@ -12,6 +12,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import { makeStyles } from "@material-ui/core/styles";
 import Webcam from "react-webcam";
 import axios from "axios";
+import api from '../../axios';
 
 const API_KEY = `${process.env.REACT_APP_GOOGLE_APPLICATION_CREDENTIALS}`;
 
@@ -33,12 +34,13 @@ const useStyles = makeStyles((theme) => ({
 const PhotoCapture = (props) => {
   const classes = useStyles();
   const [image, setImage] = React.useState("");
+  const [moodScore, setMoodScore] = React.useState(0);
 
   const handleClose = () => {
     props.close();
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     const image64_to_send = image.replace("data:image/jpeg;base64,", "");
 
     let data = JSON.stringify({
@@ -59,14 +61,46 @@ const PhotoCapture = (props) => {
 
     let url = `https://vision.googleapis.com/v1/images:annotate?key=${API_KEY}`;
 
-    axios.post(url, data, {
+    await axios.post(url, data, {
       headers: {
         'Content-Type': 'application/json',
       }
     })
     .then((res) => {
       let face_data = res.data.responses[0].faceAnnotations[0];
-      console.log(face_data);
+      return face_data;
+    })
+    .then((face_data) => {
+      let joy = convertLikelihoodToNumber(face_data.joyLikelihood);
+      let anger = convertLikelihoodToNumber(face_data.angerLikelihood);
+      let sorrow = convertLikelihoodToNumber(face_data.sorrowLikelihood);
+      let likelihoods = {joy: joy, anger: anger, sorrow: sorrow};
+      if (likelihoods.anger <= 2 || likelihoods.sorrow <= 2) {
+        let score = likelihoods.joy;
+        score = score === 0 ? 3 : score;
+        console.log(score);
+        setMoodScore(score);
+      } else if (likelihoods.anger >=3 || likelihoods.sorrow >=3) {
+        let score = likelihoods.anger >= likelihoods.sorrow ? likelihoods.anger : likelihoods.sorrow;
+        score = score === 5 ? 4 : score;
+        score = 5 - score;
+        score = score === 0 ? 3 : score;
+        console.log(score);
+        setMoodScore(score);
+      }
+    })
+    .then(() => {
+      api.post('/users/score/5f94996c6b492e9d904d4ccc', 
+      {params: {
+        score: moodScore,
+      }})
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+  
     })
     .catch((err) => {
       console.log(err);
@@ -75,6 +109,27 @@ const PhotoCapture = (props) => {
     props.close();
   };
 
+  const convertLikelihoodToNumber = (likelihood) => {
+    if(likelihood === "UNKNOWN"){
+      return 0;
+    }
+    else if(likelihood === "VERY_UNLIKELY"){
+      return 1;
+    }
+    else if(likelihood === "UNLIKELY"){
+      return 2;
+    }
+    else if(likelihood === "POSSIBLE"){
+      return 3;
+    }
+    else if(likelihood === "LIKELY"){
+      return 4;
+    }
+    else if(likelihood === "VERY_LIKELY"){
+      return 5;
+    }
+  }
+  
   const webcamRef = React.useRef(null);
 
   const capture = React.useCallback(() => {

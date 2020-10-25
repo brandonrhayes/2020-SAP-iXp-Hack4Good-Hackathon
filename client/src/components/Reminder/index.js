@@ -34,8 +34,13 @@ const reminder_data = [
   {
     title: "Do you want to talk to someone?",
     date: "Today",
-    description: "Hey, Testing. Your mood hasn't been great lately. You haven't talked to {friend} in a while. Want to send them a Facebook message?",
+    description: "Hey, Jim. Your mood hasn't been great lately. You haven't talked to Pam in a while. Want to send your friend a Facebook message?",
     facebook_message: true,
+  },
+  {
+    title: "Prank Dwight",
+    date: "Recurring; Everyday at 2:00pm",
+    description: "Bears. Beets. Battlestar Galactica.",
   },
   {
     title: "Eat lunch",
