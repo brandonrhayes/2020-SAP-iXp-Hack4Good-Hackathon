@@ -75,7 +75,10 @@ const PhotoCapture = (props) => {
       let anger = convertLikelihoodToNumber(face_data.angerLikelihood);
       let sorrow = convertLikelihoodToNumber(face_data.sorrowLikelihood);
       let likelihoods = {joy: joy, anger: anger, sorrow: sorrow};
-      if (likelihoods.anger <= 2 || likelihoods.sorrow <= 2) {
+      if (likelihoods.joy <= 3 && likelihoods.anger <= 3 && likelihoods.sorrow <= 3) {
+        let score = 3;
+        setMoodScore(score);
+      } else if (likelihoods.anger <= 2 || likelihoods.sorrow <= 2) {
         let score = likelihoods.joy;
         score = score === 0 ? 3 : score;
         console.log(score);
@@ -100,7 +103,6 @@ const PhotoCapture = (props) => {
         .catch((err) => {
           console.log(err);
         })
-  
     })
     .catch((err) => {
       console.log(err);
