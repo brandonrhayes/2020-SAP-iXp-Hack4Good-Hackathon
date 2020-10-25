@@ -1,0 +1,16 @@
+<svg xmlns:x="http://ns.adobe.com/Extensibility/1.0/" xmlns:i="http://ns.adobe.com/AdobeIllustrator/10.0/"
+  xmlns:graph="http://ns.adobe.com/Graphs/1.0/" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100"
+  style="enable-background:new 0 0 100 100;" xml:space="preserve">
+  <switch>
+    <foreignObject requiredExtensions="http://ns.adobe.com/AdobeIllustrator/10.0/" x="0" y="0" width="1" height="1" />
+    <g i:extraneous="self">
+      <g>
+        <path
+          d="M81.7,25.7c0-11-8.1-23.2-15.5-23.2S50.6,14.7,50.6,25.7c0,8.8,4.4,14.1,10.6,16l-0.8,50c0,3.2,2.5,5.8,5.7,5.8     c3.2,0,5.8-2.6,5.7-5.8l-0.8-50C77.3,39.9,81.7,34.5,81.7,25.7z" />
+        <path
+          d="M40.6,5c-1.4,0-2.5,1.1-2.5,2.5v20.8c0,0.6-0.5,1.1-1.1,1.1h-2.7c-0.6,0-1.1-0.5-1.1-1.1V7.4C33.1,6.1,32,5,30.7,5     c-1.4,0-2.5,1.1-2.5,2.5v20.8c0,0.6-0.5,1.1-1.1,1.1h-2.7c-0.6,0-1.1-0.5-1.1-1.1V7.4c0-1.4-1.1-2.5-2.5-2.5s-2.5,1.1-2.5,2.5     v25.3c0,4.3,3.3,7.8,7.4,8.2l-0.8,50.7c0,3.2,2.5,5.8,5.7,5.8s5.8-2.6,5.7-5.8L35.6,41c4.2-0.4,7.4-4,7.4-8.2V7.4     C43,6.1,41.9,5,40.6,5z" />
+      </g>
+    </g>
+  </switch>
+</svg>
