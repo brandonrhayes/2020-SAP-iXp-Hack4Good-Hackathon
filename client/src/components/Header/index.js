@@ -16,9 +16,9 @@ import { Icon } from "@material-ui/core";
 
 export const Logo = () => (
   <Icon>
-      <img src={MoodFromHome512} height={22} width={22}/>
+    <img src={MoodFromHome512} height={22} width={22} />
   </Icon>
-)
+);
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,9 +54,9 @@ const Header = () => {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-        <IconButton color="inherit">
-              <Logo />
-            </IconButton>
+          <IconButton color="inherit">
+            <Logo />
+          </IconButton>
           {/* <IconButton 
             edge="start" className={classes.menuButton} color="inherit" aria-label="MoodFromHome">
              <MoodFromHome512 />
@@ -78,14 +78,16 @@ const Header = () => {
               <AccountCircle />
             </IconButton>
           </Link>
-          {<FacebookLogin
-            appId="661278961420678"
-            autoLoad={true}
-            fields="name,email,picture"
-            callback={responseFacebook}
-            cssClass="my-facebook-button-class"
-            icon="fa-facebook"
-          /> }
+          {
+            <FacebookLogin
+              appId="661278961420678"
+              autoLoad={true}
+              fields="name,email,picture"
+              callback={responseFacebook}
+              cssClass="my-facebook-button-class"
+              icon="fa-facebook"
+            />
+          }
         </Toolbar>
       </AppBar>
     </div>

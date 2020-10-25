@@ -1,7 +1,8 @@
 import React from 'react';
-import { Typography, Button, Box } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import HeroUnit from '../HeroUnit';
+import ReminderCard from './ReminderCard';
 
 const useStyles = makeStyles(theme => ({
   heading: {
@@ -14,6 +15,14 @@ const useStyles = makeStyles(theme => ({
   link: {
     textDecoration: "none",
   },
+  cardsBox: {
+  },
+  cardsContainer: {
+    display: 'flex',
+    // alignItems: 'center',
+    justifyContent: 'center',
+    // direction: 'column',
+  }
 }))
 
 const pageData = {
@@ -21,6 +30,24 @@ const pageData = {
   subheading: 'Your reminders for a healthy work-from-home environment'
 };
 
+const reminder_data = [
+  {
+    title: "Do you want to talk to someone?",
+    date: "Today",
+    description: "Hey, Testing. Your mood hasn't been great lately. You haven't talked to {friend} in a while. Want to send them a Facebook message?",
+    facebook_message: true,
+  },
+  {
+    title: "Eat lunch",
+    date: "Recurring; Everyday at 12:00pm",
+    description: "Time to eat lunch!",
+  },
+  {
+    title: "Stand up and stretch",
+    date: "Recurring; Everyday; every 30 minutes",
+    description: "Every 30 minutes, stand up and stretch.",
+  }
+];
 
 const Reminder = () => {
   const classes = useStyles();
@@ -28,9 +55,11 @@ const Reminder = () => {
   return (
     <>
       <HeroUnit data={pageData} />
-      <Box align='center'>
-        <div> connnect to alexa </div>
-      </Box>
+      <div className={classes.cardsContainer}>
+        <Box className={classes.cardsBox}>
+          {reminder_data.map((data) => <ReminderCard reminder_data={data} />)}
+        </Box>
+      </div>
     </>
   );
 }
