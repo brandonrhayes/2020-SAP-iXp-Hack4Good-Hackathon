@@ -11,8 +11,10 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles({
   card: {
     // display: "flex",
-    marginBottom: "10px",
-    maxWidth: "500px",
+    maxWidth: "680px",
+    marginBottom: "20px",
+    marginRight: "20px",
+    marginLeft: "20px",
   },
   cardDetails: {
     flex: 1,
