@@ -43,7 +43,7 @@ const Trend = () => {
     const getScores = async () => {
         await api.get('/users/score/5f94996c6b492e9d904d4ccc')
             .then((response) => {
-                console.log(response.data.data);
+                // console.log(response.data.data);
                 // createData(response.data.date);
                 setData(response.data.data.map((value, index) => ({ index: index, score: value.score })));
                 // setData(indexValue);
