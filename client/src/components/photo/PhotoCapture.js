@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
 const PhotoCapture = (props) => {
   const classes = useStyles();
   const [image, setImage] = React.useState("");
-  const [moodScore, setMoodScore] = React.useState(0);
 
   const handleClose = () => {
     props.close();
@@ -68,6 +67,7 @@ const PhotoCapture = (props) => {
     })
     .then((res) => {
       let face_data = res.data.responses[0].faceAnnotations[0];
+      console.log(face_data);
       return face_data;
     })
     .then((face_data) => {
@@ -75,27 +75,32 @@ const PhotoCapture = (props) => {
       let anger = convertLikelihoodToNumber(face_data.angerLikelihood);
       let sorrow = convertLikelihoodToNumber(face_data.sorrowLikelihood);
       let likelihoods = {joy: joy, anger: anger, sorrow: sorrow};
+      console.log(likelihoods);
+      let moodScore = 3;
       if (likelihoods.joy <= 3 && likelihoods.anger <= 3 && likelihoods.sorrow <= 3) {
-        let score = 3;
-        setMoodScore(score);
-      } else if (likelihoods.anger <= 2 || likelihoods.sorrow <= 2) {
-        let score = likelihoods.joy;
-        score = score === 0 ? 3 : score;
-        console.log(score);
-        setMoodScore(score);
+        console.log('reached 1st boundary');
+        moodScore = 3;
+        console.log(moodScore)
+      } else if (likelihoods.anger <= 2 && likelihoods.sorrow <= 2) {
+        console.log('reached 2nd boundary');
+        moodScore = likelihoods.joy;
+        moodScore = moodScore === 0 ? 3 : moodScore;
+        console.log(moodScore)
       } else if (likelihoods.anger >=3 || likelihoods.sorrow >=3) {
-        let score = likelihoods.anger >= likelihoods.sorrow ? likelihoods.anger : likelihoods.sorrow;
-        score = score === 5 ? 4 : score;
-        score = 5 - score;
-        score = score === 0 ? 3 : score;
-        console.log(score);
-        setMoodScore(score);
+        console.log('reached 3rd boundary');
+        moodScore = likelihoods.anger >= likelihoods.sorrow ? likelihoods.anger : likelihoods.sorrow;
+        moodScore = moodScore === 5 ? 4 : moodScore;
+        moodScore = 5 - moodScore;
+        moodScore = moodScore === 0 ? 3 : moodScore;
+        console.log(moodScore)
       }
+      return moodScore;
     })
-    .then(() => {
-      api.post('/users/score/5f94996c6b492e9d904d4ccc', 
+    .then(async (my_score) => {
+      console.log(my_score);
+      await api.post('/users/score/5f94996c6b492e9d904d4ccc', 
       {params: {
-        score: moodScore,
+        score: my_score,
       }})
         .then((res) => {
           console.log(res);
