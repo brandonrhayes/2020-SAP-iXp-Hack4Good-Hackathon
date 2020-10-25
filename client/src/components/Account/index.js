@@ -6,15 +6,14 @@ import HeroUnit from '../HeroUnit';
 import Trend from './trend'
 
 const useStyles = makeStyles(theme => ({
-  heading: {
-    marginTop: '20px',
-    marginBottom: '20px',
-  },
-  heading2: {
-    marginBottom: '20px',
-  },
   link: {
     textDecoration: "none",
+  },
+  moodTrendPlotContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    width: '100%',
+    height: '100%'
   },
 }))
 
@@ -30,10 +29,11 @@ const Account = () => {
   return (
     <>
       <HeroUnit data={pageData} />
-      <Box align='center' width='500px' height='500px' >
-        <Trend width="100%" height="100%"/>
-        <MDQTest />
-      </Box>
+      <div className={classes.moodTrendPlotContainer}>
+        <div style={{width: '500px', height: '300px' }}>
+          <Trend />
+        </div>
+      </div>
     </>
   )
 }
