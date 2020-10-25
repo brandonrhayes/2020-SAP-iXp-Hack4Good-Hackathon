@@ -3,6 +3,7 @@ import { Typography, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import MDQTest from './MDQTest';
 import HeroUnit from '../HeroUnit';
+import Trend from './trend'
 
 const useStyles = makeStyles(theme => ({
   heading: {
@@ -29,7 +30,8 @@ const Account = () => {
   return (
     <>
       <HeroUnit data={pageData} />
-      <Box align='center'>
+      <Box align='center' width='500px' height='500px' >
+        <Trend width="100%" height="100%"/>
         <MDQTest />
       </Box>
     </>
